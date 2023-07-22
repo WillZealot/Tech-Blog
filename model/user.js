@@ -4,7 +4,9 @@ const sequelize = require('../config/connection');
 
 class User extends Model {
   checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
+    return bcrypt.compareSync(loginPw, this.password); 
+    // The `checkPassword` method compares the login password with the stored hashed password.
+    // It returns `true` if the passwords match, otherwise `false`.
   }
 }
 
@@ -16,7 +18,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

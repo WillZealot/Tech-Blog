@@ -28,6 +28,13 @@ Post.init(
           key: 'id',
         },
     },
+    posterName: {
+        type: DataTypes.STRING,
+        references : {
+            model : 'user',
+            key: 'name'
+        }
+    }
   },
   {
     
