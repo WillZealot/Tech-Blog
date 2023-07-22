@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { } = require('../../models');
+// const { Post } = require('../../models');
 
 // The `homepage endpoint`
 
