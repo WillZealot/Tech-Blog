@@ -16,28 +16,21 @@ Post.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      },
+    },
     content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'user',
-          key: 'id',
-        },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
     },
-    posterName: {
-        type: DataTypes.STRING,
-        references : {
-            model : 'user',
-            key: 'name'
-        }
-    }
   },
   {
-    
     sequelize,
     timestamps: false,
     freezeTableName: true,
