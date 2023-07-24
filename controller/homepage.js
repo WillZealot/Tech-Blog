@@ -1,11 +1,12 @@
 const router = require('express').Router();
-// const { Post } = require('../../models');
+const { Post } = require('../model');
 
 // The `homepage endpoint`
 
 router.get('/', async (req, res) => {
   try {
-    render.status(200).json(homeStuff);
+    const posts = await Post.findAll(req,res);
+    res.render('homepage', {posts});
   } catch (err) {
     res.status(500).json(err);
   }
