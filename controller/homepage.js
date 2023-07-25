@@ -1,22 +1,56 @@
 const router = require('express').Router();
-const { Post } = require('../model');
+const { Post, Comment } = require('../model');
+// Import the custom middleware
+const withAuth = require('../utils/auth');
 
-// The `homepage endpoint`
-
+// GET all galleries for homepage
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
-      order: [['title', 'ASC']],
+      include: [
+        {
+          model: Comment,
+          attributes: ['comment-content', 'user_id'],
+        },
+      ],
     });
 
-    // Serialize user data so templates can read it
-    const posts = postData.map((project) => project.get({ plain: true }));
-    // Pass serialized data into Handlebars.js template
-    res.render('homepage', {posts});
+    const posts = postData.map((post) => 
+      post.get({plain: true})
+      );
+
+    res.render('homepage', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
 
+// GET one gallery
+// Use the custom middleware before allowing the user to access the gallery
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'comment-content',
+            'user_id',
+          ],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+    res.render('homepage', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
