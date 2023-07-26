@@ -18,30 +18,19 @@
     {{#if loggedIn}}
     <button id="logout">Logout</button>
     {{else}}
-    <a href="/login">Login</a>
+    <a id="login" href="api/login">Login</a>
+    <a id="signup" href="api/user">Sign Up</a>
     {{/if}}
   </nav>
   <main>
     <div>
       <!--iterate over each post and display any available-->
-{{#each posts}}
-     <div class="card" class="mx-auto pt-8" style="width: 700px;">
-  <div class="card-header">
-    {{title}}
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{content}}</p>
-      <footer class="blockquote-footer">By: {{user.name}}</cite></footer>
-    </blockquote>
-  </div>
-</div> 
-      {{/each}}
-    </div>
     {{{body}}}
+    </div>
+    
   </main>
   {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
+  <script src="../../public/logout.js"></script>
   {{/if}}
 </body>
 

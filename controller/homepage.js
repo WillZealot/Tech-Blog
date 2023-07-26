@@ -3,7 +3,7 @@ const { Post, Comment, User } = require('../model');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
-// GET all galleries for homepage
+// GET all post for homepage
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
       post.get({plain: true})
       );
 
-    res.render('homepage', {
+    res.render('homepage',{
       posts,
     });
   } catch (err) {
