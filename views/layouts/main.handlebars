@@ -4,38 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Blog</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>The Function</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/style.css">
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">Tech Blog</a>
-      </h1>
-        <nav>
-          <span><a href="/">Home</a></span> 
-          {{#if loggedIn}}
-          <a href="/dashboard">Dashboard</a>
-          <button id="logout" class="btn-no-style">Logout</button>
-          {{else}}
-          <a href="/login">Login</a>
-          {{/if}}
-        </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    {{!-- <footer>
-      
-    </footer> --}}
+  <header>
+    <h1>The Function Blog</h1>
+  </header>
+  <nav>
+    <a href="/">Home</a>
+    {{#if loggedIn}}
+    <button id="logout">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+  </nav>
+  <main>
+    <div>
+      <!--iterate over each post and display any available-->
+{{#each posts}}
+     <div class="card" class="mx-auto pt-8" style="width: 700px;">
+  <div class="card-header">
+    {{title}}
   </div>
-
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{content}}</p>
+      <footer class="blockquote-footer">By: {{user.name}}</cite></footer>
+    </blockquote>
+  </div>
+</div> 
+      {{/each}}
+    </div>
+    {{{body}}}
+  </main>
   {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
+  <script src="/js/logout.js"></script>
   {{/if}}
-
 </body>
 
 </html>
