@@ -23,8 +23,22 @@
   </nav>
   <main>
     <div>
-      {{{body}}}
+      <!--iterate over each post and display any available-->
+{{#each posts}}
+     <div class="card" "mx-auto pt-5" style="width: 700px;">
+  <div class="card-header">
+    {{title}}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{content}}</p>
+      <footer class="blockquote-footer">By: {{user.name}}</cite></footer>
+    </blockquote>
+  </div>
+</div> 
+      {{/each}}
     </div>
+    {{{body}}}
   </main>
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
