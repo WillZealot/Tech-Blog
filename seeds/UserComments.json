@@ -1,14 +1,24 @@
 [
     {
-        "id": 1,
-        "comment_content" : "bro roblox literally sucks cheese idk bruh",
-        "post_id" : 1,
+        "comment_content": "bro roblox literally sucks cheese idk bruh",
+        "post_id": 1,
+        "user_id": 3
+      },
+      {
+        "comment_content": "This post is very insightful! Thanks for sharing.",
+        "post_id": 2,
+        "user_id": 2
+      },
+      {
+        "comment_content": "I have a question related to the post content. Can you clarify?",
+        "post_id": 3,
+        "user_id": 4
+      },
+      {
+        "comment_content": "I completely agree with the points made in this post.",
+        "post_id": 4,
         "user_id": 1
-    },
-    {
-        "id": 2,
-        "comment_content" : "bro roblox literally caca cheese idk bruh",
-        "post_id" : 1,
-        "user_id": 1
-    }
+      }
+      
+      
 ]
