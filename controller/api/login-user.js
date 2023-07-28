@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
       where: {
         email: req.body.email,
       },
+      include: [{ model: "post", attributes: ["title", "content", "date_created"]}],
     });
 
     if (!dbUserData) { //if not found an error is written in json
