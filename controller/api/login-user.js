@@ -13,7 +13,7 @@ router.get('/', async (req,res) => {
 router.post('/', async (req, res) => {
   try {
 
-    const dbUserData = await User.findAll({ //finding data where data passed in is equal to at least one user
+    const dbUserData = await User.findOne({ //finding data where data passed in is equal to at least one user
       where: {
         email: req.body.email,
       },
