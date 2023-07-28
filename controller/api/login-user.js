@@ -16,7 +16,6 @@ router.post('/', async (req, res) => {
     const dbUserData = await User.findAll({ //finding data where data passed in is equal to at least one user
       where: {
         email: req.body.email,
-        password: req.body.password,
       },
     });
 
@@ -25,7 +24,7 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    const validPassword = dbUserData.checkPassword(req.body.password);
+    const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
