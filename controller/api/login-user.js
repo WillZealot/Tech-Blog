@@ -12,7 +12,8 @@ router.get('/', async (req,res) => {
   // Login for user
 router.post('/', async (req, res) => {
   try {
-    const dbUserData = await User.findOne({ //finding data where data passed in is equal to at least one user
+
+    const dbUserData = await User.findAll({ //finding data where data passed in is equal to at least one user
       where: {
         email: req.body.email,
         password: req.body.password,
@@ -24,7 +25,7 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    const validPassword = await dbUserData.checkPassword(req.body.password);
+    const validPassword = dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
@@ -33,13 +34,13 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    req.session.save(() => {
-      req.session.loggedIn = true;
+    if (dbUserData){
+      req.session.save(() => {
+        req.session.loggedIn = true;
+      res.status(200).render('dashboard', { userData: dbUserData });
+      });
+    }
 
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
-    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
