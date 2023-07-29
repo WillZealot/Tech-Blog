@@ -1,2 +1,17 @@
 <h1>DASHBOARD</h1>
-<h3>Hello {{userData.name}}</h3>
+<h3>Hello {{loggedUser.name}}</h3>
+
+{{#if loggedUser.posts.length}}
+  <h2>Your Posts:</h2>
+  <ul>
+    {{#each loggedUser.posts}}
+      <li>
+        <h4>Title: {{title}}</h4>
+        <p>Content: {{content}}</p>
+        <p>Date Created: {{date_created}}</p>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>You have no posts yet.</p>
+{{/if}}
