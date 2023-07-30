@@ -4,7 +4,7 @@ const { Post, Comment, User } = require('../model');
 const withAuth = require('../utils/auth');
 
 // GET all post for homepage
-router.get('/', async (req, res) => {
+router.get('/',  async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
       );
 
     res.render('homepage',{
-      posts,
+      posts, loggedIn: req.session.loggedIn
     });
   } catch (err) {
     console.log(err);

@@ -16,7 +16,7 @@
   <nav>
     <a href="/">Home</a>
     {{#if loggedIn}}
-    <button id="logout">Logout</button>
+    <a id="logout" href="api/logout">Logout</button>
     <a id = "dashboard" href="/dashboard">Dash</a>
     {{else}}
     <a id="login" href="api/login">Login</a>

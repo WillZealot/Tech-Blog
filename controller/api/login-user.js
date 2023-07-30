@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      res.status(200).render('dashboard', { loggedUser });
+      res.status(200).render('dashboard', { loggedUser, loggedIn: true });
     });
 
   } catch (err) {

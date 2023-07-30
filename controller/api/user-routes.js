@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     await User.create(newUserData);
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.loggedIn = false;
 
       res.status(200).render('login');
     });
