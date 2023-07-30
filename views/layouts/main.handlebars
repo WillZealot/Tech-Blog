@@ -16,10 +16,10 @@
   <nav>
     <a href="/">Home</a>
     {{#if loggedIn}}
-    <a id="logout" href="/logout">Logout</button>
+    <button id="logout" >Logout</button>
     <a id = "dashboard" href="/dashboard">Dash</a>
     {{else}}
-    <a id="login" href="api/login">Login</a>
+    <a id="login" href="/login">Login</a>
     {{/if}}
   </nav>
   <main>
@@ -30,7 +30,7 @@
     
   </main>
   {{#if loggedIn}}
-  <script src="../../public/logout.js"></script>
+  <script src="/logout.js"></script>
   {{/if}}
 </body>
 
