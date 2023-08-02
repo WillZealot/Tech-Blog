@@ -1,43 +1,57 @@
-<h1>DASHBOARD</h1>
-<h3>Hello {{loggedUser.name}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>DASHBOARD</h1>
+      <h3>Hello {{loggedUser.name}}</h3>
 
-{{#if loggedUser.posts.length}}
-  <h2>Your Posts:</h2>
-  <ul>
-    {{#each loggedUser.posts}}
-     <div class="card" class="mx-auto pt-8" style="width: 700px;">
-  <div class="card-header">
-    <h5>{{title}} Created: {{date_created}}</h5>
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{content}}</p>
-    </blockquote>
-  </div>
-</div> 
-    {{/each}}
-  </ul>
-{{else}}
-  <p>You have no posts yet.</p>
-{{/if}}
-</br>
-<div>
-<div>
-<h3>Create A New Post</h3>
-</div>
-<form class="addPost" action="/dashboard" id="newPost" method="post">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input id="title" name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Title...">
-  </div>
-  <div class="form-group">
-    <label for="content">Content</label>
-    <input class="form-control" id="content" name="content" placeholder="Post what you want...">
-  </div>
-  </br>
-  <button id="submitPost" type="submit" class="btn btn-primary">Create</button>
-</form>
-</div>
+      {{#if loggedUser.posts.length}}
+        <h2>Your Posts:</h2>
+        <ul>
+          {{#each loggedUser.posts}}
+          </br>
+          <div class="card" class="mx-auto pt-8" style="width: 700px;">
+            <div class="card-header">
+              <a href="/post/{{id}}">{{title}} Created: {{date_created}}</a>
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>{{content}}</p>
+              </blockquote>
+            </div>
+          </div> 
+          <button id="submitPost" type="submit" class="btn btn-danger">Delete Post</button>
+          </br>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p>You have no posts yet.</p>
+      {{/if}}
+    </div>
 
-<script src="/add-post.js"></script>
-<script src="/logout.js"></script>
+    <div class="col-md-4">
+      <aside>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        <div>
+          <h3>Create A New Post</h3>
+        </div>
+        <form class="addPost" action="/dashboard" id="newPost" method="post">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Title...">
+          </div>
+          <div class="form-group">
+            <label for="content">Content</label>
+            <input class="form-control" id="content" name="content" placeholder="Post what you want...">
+          </div>
+          </br>
+          <button id="submitPost" type="submit" class="btn btn-primary">Create</button>
+        </form>
+      </aside>
+    </div>
+  </div>
+</div>

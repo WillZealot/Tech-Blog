@@ -29,5 +29,17 @@ async function createNewPost() {
       // Handle error as needed
     }
   }
+  
+async function deletePost() {
+    try {
+
+    } catch (err) {
+
+    }
+}  
+  
+
 
   document.querySelector('.addPost').addEventListener('submit', createNewPost);
+
+  document.querySelector('#deletePostBtn').addEventListener('submit', deletePost);

@@ -1,28 +1,26 @@
-{{#if loggedIn}}
-     <div class="card" class="mx-auto pt-8" style="width: 700px;">
-  <div class="card-header">
-    <h5>{{post.title}} Created: {{post.date_created}}</h5>
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{post.content}}</p>
-      <footer class="blockquote-footer">By: {{post.user.name}}</cite></footer>
-    </blockquote>
-  </div>
-</div> 
-</br>
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
+<main class="container py-4">
+    {{#if loggedIn}}
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5>{{post.title}} Created: {{post.date_created}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{post.content}}</p>
+        <footer class="blockquote-footer">By: {{post.user.name}}</footer>
+      </div>
+    </div>
 
-  <div>
-    <button type="submit">Add comment</button>
-  </div>
-</form>
-{{/if}}
+    <form class="comment-form mb-4">
+      <div class="form-group">
+        <label for="comment-body">Add a comment:</label>
+        <textarea class="form-control" name="comment-body" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+    {{/if}}
 
-{{> comments post.comments}}
+    {{> comments post.comments}}
+
 
 {{#if loggedIn}}
 <script src="../public/comment.js"></script>

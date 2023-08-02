@@ -10,24 +10,35 @@
 </head>
 
 <body>
-  <header>
-    <h1>The Function Blog</h1>
+  <header class="bg-primary text-white text-center py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="mb-0 me-4">The Function Blog</h1>
+      <nav class="navbar navbar-light bg-primary">
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          {{#if loggedIn}}
+          <li class="nav-item">
+            <a class="nav-link ms-3" href="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <button id="logout" class="btn btn-secondary ms-3">Logout</button>
+          </li>
+          {{else}}
+          <li class="nav-item">
+            <a class="nav-link ms-3" href="/login">Login</a>
+          </li>
+          {{/if}}
+        </ul>
+      </nav>
+    </div>
   </header>
-  <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" >Logout</button>
-    <a id = "dashboard" href="/dashboard">Dash</a>
-    {{else}}
-    <a id="login" href="/login">Login</a>
-    {{/if}}
-  </nav>
-  <main>
+  <main class="container py-4">
     <div>
       <!--iterate over each post and display any available-->
-    {{{body}}}
+      {{{body}}}
     </div>
-    
   </main>
   {{#if loggedIn}}
   <script src="/logout.js"></script>
