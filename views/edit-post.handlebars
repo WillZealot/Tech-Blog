@@ -1,0 +1,21 @@
+<main class="container py-4">
+    {{#if loggedIn}}
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5>{{post.title}} Created: {{post.date_created}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{post.content}}</p>
+        <footer class="blockquote-footer">By: {{post.user.name}}</footer>
+      </div>
+    </div>
+    <button id="submitPost" type="submit" class="btn btn-danger">Delete Post</button>
+          </br>
+    {{/if}}
+
+    {{> comments post.comments}}
+
+
+{{#if loggedIn}}
+<script src="../public/comment.js"></script>
+{{/if}}

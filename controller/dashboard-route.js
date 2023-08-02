@@ -51,4 +51,34 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Use the custom middleware before allowing the user to access the gallery
+router.get('/userpost/name', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findOne(req.params.name, {
+      include: [
+        {
+          model: Comment,
+          attributes: ['comment_content', 'user_id'],
+          include: [
+            {
+              model: User,
+              attributes: ['name'],
+            },
+          ],
+        },
+        {
+          model: User, // Include the User model to get the name of the poster
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+    res.render('edit-post', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

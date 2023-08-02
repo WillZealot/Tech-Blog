@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
       },
       include: {
         model: Post,
-        attributes: ["title", "content", "date_created"]
+        attributes: ["id", "title", "content", "date_created"]
       }
     });
 
@@ -40,6 +40,7 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.id;
+      console.log(dbUserData);
       res.status(200).redirect('/dashboard');
     });
 
