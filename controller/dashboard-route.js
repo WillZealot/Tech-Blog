@@ -34,4 +34,21 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const newPost = {
+      user_id: req.session.userId,
+      title: req.body.title,
+      content: req.body.content,
+    };
+
+    await Post.create(newPost);
+
+    res.status(200).redirect('/dashboard');
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

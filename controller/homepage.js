@@ -44,16 +44,23 @@ router.get('/post/:id', withAuth, async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: [
-            'comment_content',
-            'user_id',
+          attributes: ['comment_content', 'user_id'],
+          include: [
+            {
+              model: User,
+              attributes: ['name'],
+            },
           ],
+        },
+        {
+          model: User, // Include the User model to get the name of the poster
+          attributes: ['name'],
         },
       ],
     });
 
     const post = postData.get({ plain: true });
-    res.render('post', { post, loggedIn: req.session.loggedIn });
+    res.render('single-post', { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
