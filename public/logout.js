@@ -11,4 +11,19 @@ const logout = async () => {
     }
   };
   
+  let logoutTimeout;
+  
+  const resetLogoutTimer = () => {
+    clearTimeout(logoutTimeout);
+    logoutTimeout = setTimeout(logout, 60000); // 1 minute timeout
+  };
+  
+  document.addEventListener('click', () => {
+    resetLogoutTimer();
+  });
+  
+  document.addEventListener('keydown', () => {
+    resetLogoutTimer();
+  });
+  
   document.querySelector('#logout').addEventListener('click', logout);

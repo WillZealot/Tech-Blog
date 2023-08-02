@@ -5,11 +5,13 @@
   <h2>Your Posts:</h2>
   <ul>
     {{#each loggedUser.posts}}
+    <div>
       <li>
         <h4>Title: {{title}}</h4>
         <p>Content: {{content}}</p>
         <p>Date Created: {{date_created}}</p>
       </li>
+      </div>
     {{/each}}
   </ul>
 {{else}}
