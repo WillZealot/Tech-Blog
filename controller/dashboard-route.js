@@ -23,7 +23,6 @@ router.get('/', withAuth, async (req, res) => {
 
     // Convert the user data to a plain JavaScript object
     const loggedUser = dbUserData.get({ plain: true });
-    console.log(loggedUser);
 
     // Render the 'dashboard' template with the user's data and posts
     res.status(200).render('dashboard', { loggedUser, loggedIn: true });

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container clearfix">
   <div class="row">
     <div class="col-md-8">
       <h1>DASHBOARD</h1>
@@ -9,9 +9,9 @@
         <ul>
           {{#each loggedUser.posts}}
           </br>
-          <div class="card" class="mx-auto pt-8" style="width: 700px;">
+          <div class="card mb-3">
             <div class="card-header fs-4">
-              <a href="dashboard/userpost/{{id}}">{{title}} Created: {{date_created}}</a>
+              <a href="dashboard/userpost/{{id}}">{{title}}: Created: {{date_created}}</a>
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
@@ -28,13 +28,7 @@
 
     <div class="col-md-4">
       <aside>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        <div>
+        <div class="mb-4">
           <h3>Create A New Post</h3>
         </div>
         <form class="addPost" action="/dashboard" id="newPost" method="post">

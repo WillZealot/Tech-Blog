@@ -23,30 +23,29 @@ router.post('/', async (req, res) => {
     });
 
     const loggedUser = dbUserData.get({plain: true});
-    console.log(loggedUser)
 
     if (!dbUserData) {
-      res.status(400).json(err);
+      res.status(400).json(err)
       return;
     }
 
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json(err);
+      res.status(400).json(err)
       return;
     }
 
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.id;
-      console.log(dbUserData);
       res.status(200).redirect('/dashboard');
     });
 
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+    res.redirect('/login');
   }
 });
 
