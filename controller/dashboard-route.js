@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../model');
+const { User, Post, Comment } = require('../model');
 const withAuth = require('../utils/auth'); // Import the custom middleware
 
 router.get('/', withAuth, async (req, res) => {
@@ -11,7 +11,7 @@ router.get('/', withAuth, async (req, res) => {
       },
       include: {
         model: Post,
-        attributes: ["title", "content", "date_created"]
+        attributes: ["id","title", "content", "date_created"]
       }
     });
 
@@ -52,9 +52,9 @@ router.post('/', async (req, res) => {
 });
 
 // Use the custom middleware before allowing the user to access the gallery
-router.get('/userpost/name', withAuth, async (req, res) => {
+router.get('/userpost/:id', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findOne(req.params.name, {
+    const postData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: Comment,
@@ -72,9 +72,9 @@ router.get('/userpost/name', withAuth, async (req, res) => {
         },
       ],
     });
-
+    
     const post = postData.get({ plain: true });
-    res.render('edit-post', { post, loggedIn: req.session.loggedIn });
+    res.render('usersinglepost', { post,  loggedIn : req.session.loggedIn});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
