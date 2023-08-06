@@ -50,6 +50,25 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/userpost/:id', async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id);
+
+    const updatedData = {
+      user_id: req.session.userId,
+      title: req.body.title,
+      content: req.body.content,
+    };
+
+    await post.update(updatedData);
+
+    res.status(200).redirect('/userpost/:id');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: "An error occurred while updating the post." });
+  }
+});
+
 // Use the custom middleware before allowing the user to access the gallery
 router.get('/userpost/:id', withAuth, async (req, res) => {
   try {
@@ -73,6 +92,7 @@ router.get('/userpost/:id', withAuth, async (req, res) => {
     });
     
     const post = postData.get({ plain: true });
+    console.log(post);
     res.render('usersinglepost', { post,  loggedIn : req.session.loggedIn});
   } catch (err) {
     console.log(err);

@@ -44,4 +44,17 @@ Post.init(
   }
 );
 
+Post.updatePost = async function (postId, updatedData) {
+  try {
+    const result = await Post.update(updatedData, {
+      where: {
+        id: postId,
+      },
+    });
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = Post;
