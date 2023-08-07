@@ -8,12 +8,11 @@
         <footer class="blockquote-footer">By: {{post.user.name}}</footer>
       </div>
     </div>
-    <button id="submitPost" type="submit" class="btn btn-danger">Delete Post</button>
           </br>
     </br>
     <div>
       <div class="mb-4">
-  <h3>Update Your Post</h3>
+  <h3><u>Edit This Post</u></h3>
 </div>
 <form class="editPost" id="updatePostForm" method="PUT" data-post-id="{{post.id}}">
   <div class="form-group">
@@ -22,11 +21,18 @@
   </div>
   <div class="form-group">
     <label for="content">Revised Content</label>
-    <textarea class="form-control" id="content" name="newcontent" placeholder="Post what you want..."></textarea>
+    <textarea class="form-control" id="content" name="newcontent" placeholder="Anything you want..."></textarea>
   </div>
+  </br>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
     </div>
+    </br>
+    </br>
+    </br>
+    </br>
+    <button id="submitPost" type="submit" class="btn btn-danger">Delete Post</button>
+          </br>
 
 
 <script src="/comment.js"></script>
