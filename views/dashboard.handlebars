@@ -29,6 +29,18 @@
     <div class="col-md-4">
       <aside>
         <div class="mb-4">
+          <h3>Edit User Profile</h3>
+        </div>
+        <form class="editUser" action="/dashboard" id="edituser" method="put">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" class="form-control" id="formGroupExampleInput" placeholder="New Username...">
+          </div>
+          </br>
+          <button id="submitPost" type="submit" class="btn btn-primary">Edit Username</button>
+        </form>
+        </br>
+        <div class="mb-4">
           <h3>Create A New Post</h3>
         </div>
         <form class="addPost" action="/dashboard" id="newPost" method="post">
@@ -47,3 +59,5 @@
     </div>
   </div>
 </div>
+
+<script src="/edit-user.js"></script>

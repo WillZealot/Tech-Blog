@@ -33,6 +33,28 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+router.put('/edituser', withAuth, async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.session.userId,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    await user.update(req.body);
+
+    res.json({ message: 'User information updated successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while updating user information' });
+  }
+});
+
+
 router.post('/', async (req, res) => {
   try {
     const newPost = {
