@@ -15,14 +15,14 @@
       <div class="mb-4">
   <h3>Update Your Post</h3>
 </div>
-<form class="editPost" action="/dashboard" id="updatePostForm" method="PUT" data-post-id="{{post.id}}">
+<form class="editPost" id="updatePostForm" method="PUT" data-post-id="{{post.id}}">
   <div class="form-group">
     <label for="title">Revised Title</label>
-    <input id="title" name="title" type="text" class="form-control" placeholder="Title...">
+    <input id="title" name="newtitle" type="text" class="form-control" placeholder="Title..."></input>
   </div>
   <div class="form-group">
     <label for="content">Revised Content</label>
-    <input class="form-control" id="content" name="content" placeholder="Post what you want...">
+    <textarea class="form-control" id="content" name="newcontent" placeholder="Post what you want..."></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
@@ -30,3 +30,4 @@
 
 
 <script src="/comment.js"></script>
+<script src="/edit-post.js"></script>

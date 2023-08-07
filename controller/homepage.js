@@ -45,6 +45,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
         {
           model: Comment,
           attributes: ['comment_content', 'user_id'],
+          order: [[ 'created_at', 'DESC']], 
           include: [
             {
               model: User,
