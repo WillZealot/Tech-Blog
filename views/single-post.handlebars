@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <form class="comment-form mb-4" action="/post/{{post.id}}" method="POST">
+    <form class="comment-form mb-4" method="POST">
   <div class="form-group">
     <label for="comment-body">Add a comment:</label>
     <textarea class="form-control" name="content" id="comment-body" rows="3" required></textarea>
@@ -23,10 +23,10 @@
     {{#each post.comments as | comment |}}
   <div class="card mb-3">
     <div class="card-header">
-      Comment by: {{this.user.name}}
+      Comment by: {{comment.user_id}}
     </div>
     <div class="card-body">
-      <p class="card-text">{{this.content}}</p>
+      <p class="card-text">{{comment.comment_content}}</p>
     </div>
   </div>
   {{/each}}

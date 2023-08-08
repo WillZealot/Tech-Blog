@@ -69,35 +69,24 @@ router.get('/post/:id', withAuth, async (req, res) => {
 });
 
 //creating a comment
-router.post('/post/:id', withAuth, async (req, res) => {
+router.post('/post/:post_id', async (req, res) => {
   try {
-    const postId = req.params.id;
-    const post = await Post.findByPk(postId); // Find the post by its ID
+    const { post_id } = req.params;
+    const { comment_content } = req.body;
 
-    if (!post) {
-      // Handle the case where the post is not found
-      return res.status(404).json({ error: 'Post not found' });
-    }
-
-    const newComment = {
-      user_id: req.session.userId,
-      comment_content: req.body.content,
-    };
-
-    // Assuming you have a Comment model and want to associate the comment with the post
-    const createdComment = await post.createComment(newComment);
-
-    // Retrieve the post data as plain object
-    const plainPost = post.get({ plain: true });
-
-    res.render('single-post', {
-      post: plainPost,
-      loggedIn: req.session.loggedIn,
+    // Create a new comment in the database using Sequelize
+    const newComment = await Comment.create({
+      post_id,
+      comment_content: comment_content
     });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+
+    // You can send back the new comment as a JSON response if needed
+    res.status(201).json(newComment);
+  } catch (error) {
+    console.error('Error creating comment:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 module.exports = router;
