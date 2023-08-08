@@ -68,4 +68,36 @@ router.get('/post/:id', withAuth, async (req, res) => {
   }
 });
 
+//creating a comment
+router.post('/post/:id', withAuth, async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const post = await Post.findByPk(postId); // Find the post by its ID
+
+    if (!post) {
+      // Handle the case where the post is not found
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    const newComment = {
+      user_id: req.session.userId,
+      comment_content: req.body.content,
+    };
+
+    // Assuming you have a Comment model and want to associate the comment with the post
+    const createdComment = await post.createComment(newComment);
+
+    // Retrieve the post data as plain object
+    const plainPost = post.get({ plain: true });
+
+    res.render('single-post', {
+      post: plainPost,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

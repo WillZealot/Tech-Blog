@@ -10,19 +10,28 @@
       </div>
     </div>
 
-    <form class="comment-form mb-4">
-      <div class="form-group">
-        <label for="comment-body">Add a comment:</label>
-        <textarea class="form-control" name="comment-body" rows="3"></textarea>
-      </div>
-      </br>
-      <button type="submit" class="btn btn-primary">Add Comment</button>
-    </form>
+    <form class="comment-form mb-4" action="/post/{{post.id}}" method="POST">
+  <div class="form-group">
+    <label for="comment-body">Add a comment:</label>
+    <textarea class="form-control" name="content" id="comment-body" rows="3" required></textarea>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
     {{/if}}
 
-    {{post.comments}}
+    {{#each post.comments as | comment |}}
+  <div class="card mb-3">
+    <div class="card-header">
+      Comment by: {{this.user.name}}
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{this.content}}</p>
+    </div>
+  </div>
+  {{/each}}
 
 
 {{#if loggedIn}}
-<script src="../public/comment.js"></script>
+<script src="/comment.js"></script>
 {{/if}}
