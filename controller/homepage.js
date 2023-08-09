@@ -38,7 +38,7 @@ router.get('/',  async (req, res) => {
 
 // GET one gallery
 // Use the custom middleware before allowing the user to access the gallery
-router.get('/post/:id', withAuth, async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -70,7 +70,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
 });
 
 //creating a comment
-router.post('/post/:post_id', async (req, res) => {
+router.post('/post/:post_id', withAuth, async (req, res) => {
   try {
     const { post_id } = req.params;
     const { comment_content } = req.body;
