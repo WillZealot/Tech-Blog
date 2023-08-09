@@ -61,6 +61,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
+    console.log(post);
     res.render('single-post', { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
@@ -77,7 +78,9 @@ router.post('/post/:post_id', async (req, res) => {
     // Create a new comment in the database using Sequelize
     const newComment = await Comment.create({
       post_id,
-      comment_content: comment_content
+      comment_content: comment_content,
+      user_id : req.session.userId,
+      user: user_id.name
     });
 
     // You can send back the new comment as a JSON response if needed

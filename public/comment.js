@@ -15,7 +15,7 @@ async function commentFormHandler(event) {
         method: 'POST',
         body: JSON.stringify({
           post_id,
-          comment_content : comment_content
+          comment_content : comment_content,
         }),
         headers: {
           'Content-Type': 'application/json'
