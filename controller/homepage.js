@@ -79,8 +79,7 @@ router.post('/post/:post_id', async (req, res) => {
     const newComment = await Comment.create({
       post_id,
       comment_content: comment_content,
-      user_id : req.session.userId,
-      user: user_id.name
+      user_id : req.session.userId
     });
 
     // You can send back the new comment as a JSON response if needed

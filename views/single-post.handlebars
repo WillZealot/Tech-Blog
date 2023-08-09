@@ -23,7 +23,7 @@
     {{#each post.comments as | comment |}}
   <div class="card mb-3">
     <div class="card-header">
-      Comment by: {{user}}
+      Comment by: {{comment.user.name}}
     </div>
     <div class="card-body">
       <p class="card-text">{{comment.comment_content}}</p>
