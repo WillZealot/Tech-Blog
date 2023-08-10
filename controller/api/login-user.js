@@ -22,8 +22,6 @@ router.post('/', async (req, res) => {
       }
     });
 
-    const loggedUser = dbUserData.get({plain: true});
-
     if (!dbUserData) {
       res.status(400).json(err)
       return;

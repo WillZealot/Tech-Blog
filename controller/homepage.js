@@ -13,12 +13,14 @@ router.get('/',  async (req, res) => {
           attributes: ['id','comment_content',],
           include: [
             {model: User,
-              attributes: ['name']}
+              attributes: ['name'],
+              exclude: ['password']}
           ]
         },
         {
           model: User,
-          attributes: ['name']
+          attributes: ['name'],
+          exclude: ['password']
         }
       ],
     });
@@ -50,12 +52,14 @@ router.get('/post/:id', async (req, res) => {
             {
               model: User,
               attributes: ['name'],
+              exclude: ['password']
             },
           ],
         },
         {
           model: User, // Include the User model to get the name of the poster
           attributes: ['name'],
+          exclude: ['password']
         },
       ],
     });
