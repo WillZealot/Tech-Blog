@@ -11,7 +11,7 @@ async function commentFormHandler(event) {
     // Check if the comment_content is not empty
     if (comment_content) {
       // Make a POST request to the server with the comment data
-      const response = await fetch(`/post/${post_id}`, {
+      const response = await fetch(`/api/post/${post_id}`, {
         method: 'POST',
         body: JSON.stringify({
           post_id,

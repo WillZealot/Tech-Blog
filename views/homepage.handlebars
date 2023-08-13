@@ -2,7 +2,7 @@
   {{#each posts}}
   <div class="card my-4" style="max-width: 700px; margin: 0 auto;"> <!-- Added my-4 class for vertical spacing -->
     <div class="card-header">
-      <a href="/post/{{id}}" class="text-dark fs-4">{{title}}: Created: {{date_created}}</a> <!-- Added text-dark class for black link color -->
+      <a href="/api/post/{{id}}" class="text-dark fs-4">{{title}}: Created: {{date_created}}</a> <!-- Added text-dark class for black link color -->
     </div>
     <div class="card-body">
       <p>{{content}}</p>

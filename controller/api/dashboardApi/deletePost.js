@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Post } = require('../../model');
-const withAuth = require('../../utils/auth');
+const { Post } = require('../../../model');
+const withAuth = require('../../../utils/auth');
 router.delete('/userpost/:id', withAuth, async (req, res) => {
   try {
     const affectedRows = await Post.destroy({

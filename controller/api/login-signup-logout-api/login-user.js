@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../../model');
+const { User, Post } = require('../../../model');
 
 router.get('/', async (req, res) => {
   try {
@@ -35,8 +35,9 @@ router.post('/', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      
       req.session.userId = dbUserData.id;
+      req.session.loggedIn = true;
       res.status(200).redirect('/');
     });
 
