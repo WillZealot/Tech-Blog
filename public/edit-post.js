@@ -10,7 +10,7 @@ async function editFormHandler(event) {
     const content = document.querySelector('textarea[name="newcontent"]').value;
   
     // Make a PUT request to the server with the updated post data
-    const response = await fetch(`/dashboard/userpost/${id}`, {
+    const response = await fetch(`/dashboard/api/userpost/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
         title,

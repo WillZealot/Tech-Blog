@@ -6,7 +6,7 @@ async function editUser(event) {
   
     try {
       // Make a PUT request to the server with the updated user data
-      const response = await fetch(`dashboard/edituser`, {
+      const response = await fetch(`dashboard/api/edituser`, {
         method: 'PUT',
         body: JSON.stringify({
           name,
